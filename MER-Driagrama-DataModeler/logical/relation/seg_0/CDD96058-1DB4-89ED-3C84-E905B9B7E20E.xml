@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Tem" directorySegmentName="seg_0" id="CDD96058-1DB4-89ED-3C84-E905B9B7E20E">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-21 23:02:11 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A40E1EDC-6E7D-AA8D-A40A-0AD62E77969F</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>23F0F335-D07A-E5C0-7071-44817966B54F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
