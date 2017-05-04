@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="TipoProduto" directorySegmentName="seg_0" id="0B08AE00-FD6D-8B1B-9360-5AC30B253AA7">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-21 22:43:35 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<identifying>true</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>29DDB879-779B-8B6C-62B9-C9223BE6F48E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E763B0D0-FD82-72A2-7D16-534B8BB5533F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

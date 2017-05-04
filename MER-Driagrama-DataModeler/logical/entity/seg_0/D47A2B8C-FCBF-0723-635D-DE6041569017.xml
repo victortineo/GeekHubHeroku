@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D47A2B8C-FCBF-0723-635D-DE6041569017" name="Endereco">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:16:39 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="476BA5CD-3011-F5ED-FC4E-A5148DF3E3A2">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:16:46 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Logradouro" id="14867824-368E-37CD-4B52-83CC4F842CA4">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:17:30 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Complemento" id="757C00AD-6CC7-4BBA-7FA4-FBE07471F2A7">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:20:59 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bairro" id="9731E279-1F8C-6939-E9D3-8E3D2CB186F6">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:21:14 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CEP" id="5B337393-78F3-4D0A-6861-F6532AC48301">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:18:07 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Cidade" id="C3BB3CE0-4254-EC76-F687-01A36BE7D545">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:18:13 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="UF" id="110B94B8-307D-03D5-622D-4F520FA9CB11">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-22 00:19:25 UTC</createdTime>
+<ownerDesignName>MER-Driagrama-DataModeler</ownerDesignName>
+<engineerTo>
+<item key="3527C72F-CE88-1506-EDB9-039687C7D914" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

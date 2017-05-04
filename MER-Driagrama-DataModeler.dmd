@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="MER-Driagrama-DataModeler" id="4AA73FB5-BACE-E77D-9EFA-51EC6AC3417B" version="3.5">
+<createdBy>tiago</createdBy>
+<createdTime>2017-02-21 22:35:03 UTC</createdTime>
+<ownerDesignName>sql</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>4AA73FB5-BACE-E77D-9EFA-51EC6AC3417B</designId>
+</OSDM_Design>

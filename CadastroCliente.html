@@ -1,0 +1,162 @@
+<html>
+
+<head>
+    <title> Cadastro de Cliente </title>
+
+<script type="text/javascript" src="jquery-1.12.4.js"></script>
+<link rel="stylesheet" href="bootstrap.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="well">
+        <label><h1>Cadastro de Cliente</h1></label>
+    </div>
+	
+
+	
+	<div class="container">
+	
+		<ul  class="nav nav-tabs">
+			<li><a data-toggle="tab" href="#Acesso">Acesso</a></li>
+			<li><a data-toggle="tab" href="#DadosCadastro">Dados de Cadastro</a></li>
+			
+			<li><a data-toggle="tab" href="#Endereco">Endereco</a></li>
+		</ul>
+	
+		<div class="tab-content">
+			
+			<div  id="Acesso" class="tab-pane fade in active">	
+					<div>
+						<label><h2> Dados de Acesso</h2></label>
+					</div>
+					<br/>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Usuário: </label>
+								<input class="form-control" type="text">
+							</div>
+							<div class="form-group">
+								<label>Senha: </label>
+								<input class="form-control" type="password">
+							</div>
+						</div>
+					</div>
+					<br/>
+					
+					<input class="btn btn-default" type="button" value="Cadastrar" onclick="msgCadastrar()">
+					
+
+			</div>
+		
+		
+			<div id="DadosCadastro" class="tab-pane fade">
+					
+					<div class="row">
+						<div class="col-md-4">
+							<div>
+								<label><h2> Dados de Cadastro </h2></label>
+							</div>
+							<br/>
+							
+							<div class="form-group">
+								<label>Nome: </label>
+								<input class="form-control" type="text">
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="tipo_cliente" value="cpf">CPF
+								<input class="form-check-input" type="radio" name="tipo_cliente" value="cnpj">CNPJ<br>
+								<input class="form-control" type="text">
+							</div>
+							<br/>
+							<div class="form-group">
+								<label>E-mail: </label>
+								<input class="form-control" type="email">
+							</div>
+						</div>
+					</div>
+
+					<input class="btn btn-default" type="button" value="Cadastrar" onclick="msgCadastrar()">
+				
+			</div>
+			
+			<div id="Endereco" class="tab-pane fade">
+					<div>
+						<label><h2> Dados de Endereço </h2></label>
+					</div>
+					<br/>
+					
+					<div class="row">
+						<div class="form-group col-md-2">
+							<label>Logradouro: </label>
+							<select class="form-control"> 
+								<option>Rua</option>
+								<option>Avenida</option>
+								<option>Praça</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Endereço: </label>
+							<input class="form-control" type="text">
+						</div>
+						<div class="form-group col-md-1">
+							<label>Número: </label>
+							<input class="form-control" type="text">
+						</div>  
+					</div>
+					
+					<div class="row">
+						<div class="form-group col-md-2">
+							<label>Complemento: </label>
+							<input class="form-control" type="text">
+						</div> 
+						 <div class="form-group col-md-5">
+							<label>Bairro: </label>
+							<input class="form-control" type="text">
+						</div>        
+						 <div class="form-group col-md-2">
+							<label>CEP: </label>
+							<input class="form-control" type="text">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group  col-md-2">
+							<label>Cidade: </label>
+							<input class="form-control" type="text">
+						</div>    
+						  <div class="form-group  col-md-1">
+							<label>UF: </label>
+							<input class="form-control" type="text">
+						</div> 
+					</div>
+
+				<input class="btn btn-default" type="button" value="Cadastrar" onclick="msgCadastrar()">
+					
+			</div>
+			
+
+			
+	
+			
+
+			
+		</div>
+	</div>
+	
+		       
+    
+
+    </div>
+    
+<script>
+function msgCadastrar() {
+    alert("Cadastrado");
+}
+</script>
+</body>
+
+
+
+</html>
