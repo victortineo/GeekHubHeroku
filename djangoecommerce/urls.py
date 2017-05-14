@@ -19,11 +19,16 @@ from django.contrib import admin
 from core import views
 from catalogo import views as views_catalogo
 
+from django.contrib.auth.views import login, logout
+
 urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^produto/$', views.produto, name="produto"),
     url(r'^catalogo/', include('catalogo.urls', namespace='catalogo')),
     url(r'^contato/$', views.contato, name="contato"),
+    url(r'^entrar/$', login, {'template_name':'login.html'}, name="login"),
+    url(r'^sair/$', logout, {'next_page':'index'}, name="logout"),
+    url(r'^conta/', include('accounts.urls', namespace='accounts')),
     url(r'^admin/', admin.site.urls),
 
 ]
