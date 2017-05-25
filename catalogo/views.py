@@ -9,8 +9,6 @@ class ListaProdutos(generic.ListView):
 	context_object_name = 'produtos'
 	paginate_by = 3
 
-produtos = ListaProdutos.as_view()
-
 class ListaCategoria(generic.ListView):
 
 	template_name = 'catalogo/categoria.html'
@@ -25,8 +23,6 @@ class ListaCategoria(generic.ListView):
 		context['categoriaAtual'] = get_object_or_404(Category, slug = self.kwargs['slug'])
 		return context
 
-categoria = ListaCategoria.as_view()
-
 def produto(request, slug):
 	produto = Product.objects.get(slug=slug)
 	context = {
@@ -34,3 +30,6 @@ def produto(request, slug):
 	}
 	return render(request, 'catalogo/produto.html', context)
 
+
+categoria = ListaCategoria.as_view()
+produtos = ListaProdutos.as_view()

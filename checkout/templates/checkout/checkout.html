@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Método de pagamento | {{ block.super }}
+{% endblock title %}
+
+{% block container %}
+        <div class="page-header">
+			<h1>Escolha a forma de pagamento</h1>
+        </div>
+        <div class="row">
+        <p> Pedido #{{ order.pk }}</p>
+            <div class="col-md-8 col-md-offset-2">
+            </div>
+            <div class="col-md-4 col-md-offset-2 "><a href="#" class="btn btn-primary">PagSeguro</a></div>
+            <div class="col-md-4"><a href="#" class="btn btn-success">PayPal</a></div>
+        </div>
+{% endblock container %}

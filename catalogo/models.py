@@ -29,7 +29,7 @@ class Product(models.Model):
 	
 	created = models.DateTimeField('Criado em', auto_now_add=True)
 	modified = models.DateTimeField('Modificado', auto_now=True)
-	category = models.ForeignKey('catalogo.Category', verbose_name='Categoria', on_delete='models.CASCADE')
+	category = models.ForeignKey('catalogo.Category', verbose_name='Categoria')
 	description = models.TextField('Descrição', blank=True)
 	price = models.DecimalField('Preço', decimal_places=2, max_digits=7)
 

@@ -7,7 +7,7 @@
 {% block container %}
 <div class="page-header">
     <h1>Fale conosco</h1>
-    <form class="form-horizontal" action="" method="post">
+    <form class="form-horizontal" action="http://52.54.242.89:90/api/emailAPI" method="post">
         {% csrf_token %}
         <fieldset>
             {% for field in form %}

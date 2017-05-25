@@ -5,22 +5,30 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.views.generic import View, TemplateView, CreateView
+from catalogo.models import Category, Product
+from django.views import generic
 
-def index(request):
-	return render(request, 'index.html')
+class indexProdutos(generic.ListView):
+	
+	model = Product
+	template_name = 'index.html'
+	context_object_name = 'produtos'
+	paginate_by = 3
+
+index = indexProdutos.as_view()
 
 def contato(request):
-	if request.method == 'POST':
-		form = ContactForm(request.POST)
-	else:
-		form = ContactForm()
+	success = False
+	form = ContactForm(request.POST or None)
+	request.session['teste'] = 'teste'
+	if form.is_valid():
+		form.send_mail()
+		success = True
 	context = {
-		'form': form
+		'form': form,
+		'success': success
 	}
 	return render(request, 'contato.html', context)
-
-def produto(request):
-	return render(request, 'produto.html')
 
 User = get_user_model()
 
