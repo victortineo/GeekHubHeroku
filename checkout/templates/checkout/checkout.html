@@ -12,7 +12,9 @@
         <p> Pedido #{{ order.pk }}</p>
             <div class="col-md-8 col-md-offset-2">
             </div>
-            <div class="col-md-4 col-md-offset-2 "><a href="#" class="btn btn-primary">PagSeguro</a></div>
+            <div class="col-md-4 col-md-offset-2 ">
+             <a href="{% url 'checkout:pagseguro_view' order.pk %}" class="btn btn-success">Pagar com Pagseguro</a>
+            </div>
             <div class="col-md-4"><a href="#" class="btn btn-success">PayPal</a></div>
         </div>
 {% endblock container %}

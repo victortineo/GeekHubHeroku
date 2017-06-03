@@ -7,13 +7,13 @@ class ListaProdutos(generic.ListView):
 	model = Product
 	template_name = 'catalogo/produtos.html'
 	context_object_name = 'produtos'
-	paginate_by = 3
+	paginate_by = 9
 
 class ListaCategoria(generic.ListView):
 
 	template_name = 'catalogo/categoria.html'
 	context_object_name = 'produtos'
-	paginate_by = 3
+	paginate_by = 9
 
 	def get_queryset(self):
 		return Product.objects.filter(category__slug=self.kwargs['slug'])
@@ -30,6 +30,16 @@ def produto(request, slug):
 	}
 	return render(request, 'catalogo/produto.html', context)
 
+class ListaPromocoes(generic.ListView):
+	
+	model = Product
+	template_name = 'catalogo/promocoes.html'
+	context_object_name = 'produtos'
+	paginate_by = 9
 
+	def get_queryset(self):
+		return Product.objects.filter(promotional=True)
+
+promocoes = ListaPromocoes.as_view()
 categoria = ListaCategoria.as_view()
 produtos = ListaProdutos.as_view()

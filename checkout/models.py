@@ -1,37 +1,48 @@
+# coding=utf-8
+
+from pagseguro import PagSeguro
+
 from django.db import models
 from django.conf import settings
+
 from catalogo.models import Product
-# Create your models here.
+
 
 class CartItemManager(models.Manager):
 
-	def add_item(self, cart_key, product):
-		if self.filter(cart_key=cart_key, product=product).exists():
-			created = False
-			cart_item = self.get(cart_key=cart_key, product=product)
-			cart_item.quantity = cart_item.quantity + 1
-			cart_item.save()
-		else:
-			created = True
-			cart_item = CartItem.objects.create(cart_key=cart_key, product=product, price=product.price)
+    def add_item(self, cart_key, product):
+        if self.filter(cart_key=cart_key, product=product).exists():
+            created = False
+            cart_item = self.get(cart_key=cart_key, product=product)
+            cart_item.quantity = cart_item.quantity + 1
+            cart_item.save()
+        else:
+            created = True
+            cart_item = CartItem.objects.create(
+                cart_key=cart_key, product=product, price=product.price
+            )
+        return cart_item, created
 
-		return cart_item, created
 
 class CartItem(models.Model):
-	
-	cart_key = models.CharField('Chave do carrinho', max_length=40, db_index=True)
-	product = models.ForeignKey('catalogo.Product', verbose_name='Produto')
-	quantity = models.PositiveIntegerField('Quantidade', default=1)
-	price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
-	objects = CartItemManager()
 
-	class Meta:
-		verbose_name = 'Item do Carrinho'
-		verbose_name_plural = 'Itens do Carrinho'
-		unique_together = (('cart_key', 'product'),)
+    cart_key = models.CharField(
+        'Chave do Carrinho', max_length=40, db_index=True
+    )
+    product = models.ForeignKey('catalogo.Product', verbose_name='Produto')
+    quantity = models.PositiveIntegerField('Quantidade', default=1)
+    price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
 
-	def __str__(self):
-		return '{} [{}]'.format(self.product, self.quantity)
+    objects = CartItemManager()
+
+    class Meta:
+        verbose_name = 'Item do Carrinho'
+        verbose_name_plural = 'Itens dos Carrinhos'
+        unique_together = (('cart_key', 'product'),)
+
+    def __str__(self):
+        return '{} [{}]'.format(self.product, self.quantity)
+
 
 class OrderManager(models.Manager):
 
@@ -83,37 +94,71 @@ class Order(models.Model):
     def products(self):
         products_ids = self.items.values_list('product')
         return Product.objects.filter(pk__in=products_ids)
-    
+
     def total(self):
         aggregate_queryset = self.items.aggregate(
             total=models.Sum(
                 models.F('price') * models.F('quantity'),
                 output_field=models.DecimalField()
-                )
             )
+        )
         return aggregate_queryset['total']
 
+    def pagseguro_update_status(self, status):
+        if status == '3':
+            self.status = 1
+        elif status == '7':
+            self.status = 2
+        self.save()
+
+    def complete(self):
+        self.status = 1
+        self.save()
+
+    def pagseguro(self):
+        self.payment_option = 'pagseguro'
+        self.save()
+        pg = PagSeguro(
+            email=settings.PAGSEGURO_EMAIL, token=settings.PAGSEGURO_TOKEN,
+            config={'sandbox': settings.PAGSEGURO_SANDBOX}
+        )
+        pg.sender = {
+            'email': self.user.email
+        }
+        pg.reference_prefix = ''
+        pg.shipping = None
+        pg.reference = self.pk
+        for item in self.items.all():
+            pg.items.append(
+                {
+                    'id': item.product.pk,
+                    'description': item.product.name,
+                    'quantity': item.quantity,
+                    'amount': '%.2f' % item.price
+                }
+            )
+        return pg
+
 class OrderItem(models.Model):
- 
-	order = models.ForeignKey(Order, verbose_name='Pedido', related_name='items')
-	product = models.ForeignKey('catalogo.Product', verbose_name='Produto')
-	quantity = models.PositiveIntegerField('Quantidade', default=1)
-	price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
 
-	class Meta:
-		verbose_name = 'Item do Pedido' 
-		verbose_name_plural = 'Itens do Pedido' 
+    order = models.ForeignKey(Order, verbose_name='Pedido', related_name='items')
+    product = models.ForeignKey('catalogo.Product', verbose_name='Produto')
+    quantity = models.PositiveIntegerField('Quantidade', default=1)
+    price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
 
-	def __str__():
-		return 'Pedido #{}, Produto: {}'.format(self.order, self.product)
-		
-# funções
+    class Meta:
+        verbose_name = 'Item do pedido'
+        verbose_name_plural = 'Itens dos pedidos'
+
+    def __str__(self):
+        return '[{}] {}'.format(self.order, self.product)
+
 
 def post_save_cart_item(instance, **kwargs):
-	if instance.quantity < 1:
-		instance.delete()
+    if instance.quantity < 1:
+        instance.delete()
+
 
 models.signals.post_save.connect(
-	post_save_cart_item, 
-	sender=CartItem, dispatch_uid='post_save_cart_item'
+    post_save_cart_item, sender=CartItem, dispatch_uid='post_save_cart_item'
 )

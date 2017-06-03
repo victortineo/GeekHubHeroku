@@ -9,8 +9,100 @@
 {% block container %}
     
 <div class="page-header">
-			<h1>Itens da pesquisa</h1>
-		</div>
+			<h1>Pesquisa</h1>
+			{% if  request.GET.tipo == 'nome' %}
+			 	<p>Pesquisa por nome </p>
+			{% elif request.GET.tipo == 'descricao' %}
+			 	<p>Pesquisa por descrição </p>
+			{% elif request.GET.tipo == 'preco' %}
+			 	<p>Pesquisa por preço</p>
+			{% endif %}
+			<h3>Opções de pesquisa</h3>
+			<form method="get" class="form-inline" onsubmit="return verificaPrecos()">
+				<div class="form-group">
+				<select name="tipo" class="form-control" id="tipo" onchange="abreAbas(this.value)">
+					<option value="" selected="">Tipo de pesquisa</option>
+					<option value="nome">nome</option>
+					<option value="descricao">descricao</option>
+					<option value="preco">preco</option>
+				</select>
+				<div id="Abas" class="form-group"></div>
+				</div>
+			</form>
+</div>
 {% include 'catalogo/__produto.html' %}
 {% pagination request paginator page_obj %}
+
+<script type="text/javascript">
+	var abas = document.getElementById('Abas');
+	function abreAbas(tipo){
+		if(tipo=='preco'){
+			var preco_min = document.createElement("INPUT");
+			preco_min.type = 'number';
+			preco_min.className = 'form-control';
+			preco_min.name = 'preco_min';
+			preco_min.id = 'precoMin';
+			preco_min.placeholder = 'Preço mínimo';
+			var preco_max = document.createElement("INPUT");
+			preco_max.type = 'number';
+			preco_max.className = 'form-control';
+			preco_max.name = 'preco_max';
+			preco_max.id = 'precoMax';
+			preco_max.placeholder = 'Preço máximo';
+			while (abas.firstChild) {
+				abas.removeChild(abas.firstChild);
+			}
+			abas.appendChild(preco_max);
+			abas.appendChild(preco_min);
+		}
+		if(tipo=='nome'){
+			var nome = document.createElement("INPUT");
+			nome.type = 'text';
+			nome.className = 'form-control';
+			nome.name = 'name';
+			nome.id = 'nome';
+			nome.placeholder = 'Digite a palavra que deseja pesquisar';
+			while (abas.firstChild) {
+				abas.removeChild(abas.firstChild);
+			}
+			abas.appendChild(nome);
+		}
+		if(tipo=='descricao'){
+			var descricao = document.createElement("INPUT");
+			descricao.type = 'text';
+			descricao.className = 'form-control';
+			descricao.name = 'descricao';
+			descricao.id = 'descricao';
+			descricao.placeholder = 'Digite a palavra que deseja pesquisar';
+			while (abas.firstChild) {
+				abas.removeChild(abas.firstChild);
+			}
+			abas.appendChild(descricao);
+			}
+		var button = document.createElement('BUTTON');
+		button.type = 'submit';
+		button.className = 'btn btn-default';
+		var lupa = document.createElement('SPAN');
+		lupa.className = 'glyphicon glyphicon-search';
+		button.appendChild(lupa);
+		abas.appendChild(button);
+		}
+//	function verificaPrecos(){
+//		if(document.getElementById('tipo').value == 'preco'){
+//				if(document.getElementById('precoMin') != undefined	&& document.getElementById('precoMax') != undefined ){
+// 					if(document.getElementById('precoMin').value > document.getElementById('precoMax').value){
+// 						alert("O preço mínimo NÃO pode ser maior do que o preço máximo");
+// 						return false;
+// 					}
+// 					else {
+// 						return true;
+// 					}
+// 				}
+// 			}
+// 		else {
+// 			return true;
+// 		}
+// 	}
+</script>
 {% endblock container %}
+

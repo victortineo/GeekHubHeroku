@@ -32,12 +32,14 @@ class Product(models.Model):
 	category = models.ForeignKey('catalogo.Category', verbose_name='Categoria')
 	description = models.TextField('Descrição', blank=True)
 	price = models.DecimalField('Preço', decimal_places=2, max_digits=7)
-
+	
+	promotional = models.BooleanField("Promocional")
+	promotional_price = models.DecimalField('Preço promocional', blank=True, null=True, decimal_places=2, max_digits=7)
 
 	class Meta:
 		verbose_name = 'Produto'
 		verbose_name_plural = 'Produtos'
-		ordering = ['name']
+		ordering = ['created']
 
 	def __str__(self):
 		return self.name

@@ -13,7 +13,9 @@ class indexProdutos(generic.ListView):
 	model = Product
 	template_name = 'index.html'
 	context_object_name = 'produtos'
-	paginate_by = 3
+
+	def get_queryset(self):
+		return Product.objects.filter(promotional=True)
 
 index = indexProdutos.as_view()
 

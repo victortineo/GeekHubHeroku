@@ -8,7 +8,13 @@
 			<div class="caption">
 				<h3>{{produto.name}}</h3>
 				<p>{{produto.description|linebreaks}}.</p>
+				{% if produto.promotional == True %}
+				    
+				<p>Preço: de <del>R${{produto.price}}</del> por R${{produto.promotional_price}}</p>
+				
+				{% else %}
 				<p>Preço: {{produto.price}}</p>
+				{% endif %}
 				<p><a href="{{ produto.get_absolute_url }}" class="btn btn-success" role="button">Saiba Mais</a> <a href="{% url 'checkout:create_cart_item' produto.slug %}" class="btn btn-default" role="button">Adicionar ao carrinho</a></p>
 			</div>
 		</div>
